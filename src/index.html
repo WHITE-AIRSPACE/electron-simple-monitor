@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="box">
+        <span class="label">CPU (%)</span>
+        <span id='cpu'>-</span>
+    </div>
+    <div class="box">
+      <span class="label">Free Men (%)</span>
+      <span id='men'>-</span>
+  </div>
+    <div class="box">
+      <span class="label">Total Men (GB)</span>
+      <span id='totalmen'>-</span>
+  </div>
+    <script>
+      const electron = require('electron')
+      const ipcRenderer = electron.ipcRenderer
+
+      ipcRenderer.on('cpu',(event,data)=>{
+        document.getElementById('cpu').innerHTML = data.toFixed(2)
+      })
+      ipcRenderer.on('men',(event,data)=>{
+        document.getElementById('men').innerHTML = data.toFixed(2)
+      })
+      ipcRenderer.on('totalmen',(event,data)=>{
+        document.getElementById('totalmen').innerHTML = data.toFixed(2)
+      })
+      
+    </script>
+  </body>
+</html>
